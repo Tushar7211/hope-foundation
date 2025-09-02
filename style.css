@@ -1,0 +1,123 @@
+
+html, body {
+    margin: 0; /* Removes default margin */
+    padding: 0; /* Removes default padding */
+    height: 100vh; /* Ensures full viewport height */
+    width: 100vw; /* Ensures full viewport width */
+    overflow-x: hidden; /* Prevents horizontal scrollbars */
+}
+body {
+    
+    
+}
+.title {
+    font-size: 5rem; /* Larger font size for the title */
+    font-weight: bold; /* Makes the title bold */
+    margin: 0; /* Removes default margin */
+    font-family: 'Oswald', sans-serif;
+    display: flex; /* Enables Flexbox for the title */
+    align-items: center; /* Aligns logo and text vertically */
+}
+   .title::before {
+    content: ""; /* must still have content for pseudo-element to render */
+    display: inline-block;
+    width: 90px;      /* set exact width */
+    height: 90px;     /* set exact height */
+    margin-right: 1rem;
+    background-image: url("images/hopelogo.jpg");
+    background-size: contain; /* or cover */
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+}
+
+
+
+.tagline {
+    font-size: 2.0rem; /* Slightly smaller font size for the tagline */
+    font-style: italic; /* Makes the tagline italic */
+    line-height: 1.5;
+    margin: 0; /* Removes default margin */
+}
+.gap {
+    margin: 1rem 0; /* Adds vertical spacing */
+    line-height: 1.5; /* Increases line height for better readability */
+}
+.donatebtn {
+    background-color: #dab617; /* Button background color */
+    color: white; /* Button text color */
+    border: none; /* Removes default border */
+    padding: 1rem 2rem; /* Adds padding for better click area */
+    font-size: 1.5rem; /* Increases font size */
+    border-radius: 15px; /* Rounds the corners */
+    cursor: pointer; /* Changes cursor on hover */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+.donatebtn:hover {
+    background-color: #bfa00e; /* Darker shade on hover */
+}
+.page1{
+    background-image: url('https://www.dishafoundation.ngo/img/slider-1.jpeg');
+    background-size: cover;
+    background-position: center;
+    line-height: 0.5;
+    background-repeat: no-repeat;
+    display: flex; /* Enables Flexbox */
+    flex-direction: column; /* Stacks items vertically */
+    justify-content: center; /* Centers content horizontally */
+    color: white; /* Changes text color to white */
+    font-size: 1.5rem; /* Makes the text a bit bigger */
+    align-items: center; /* Centers content vertically */
+    height: 100vh; /* Ensures the body takes up the full viewport height */
+    margin: 0; /* Removes default margin */
+}
+.page2 {
+    background-color: #f4f4f4; /* Light gray background */
+    padding: 2rem; /* Adds padding */
+    text-align: center; /* Centers text */
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.gapaboutus {
+    margin: 2rem 0; /* Adds vertical spacing */
+    line-height: 1.5; /* Increases line height for better readability */
+    margin-bottom: 125px;
+}
+.carousel {
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+        }
+        .carousel-track {
+            display: inline-flex;
+            animation: scroll 20s linear infinite;
+        }
+        .carousel-item {
+            position: relative;
+            flex: 0 0 auto;
+            width:auto;
+            height:auto;
+            margin-right: 1rem;
+        }
+        .carousel-item img {
+            width: 400px;
+            height: 400px;
+            object-fit: cover;
+        }
+        .carousel-text {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 0.5rem;
+            text-align: center;
+            font-weight: bold;
+        }
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .carousel-track:hover {
+            animation-play-state: paused;
+        }
