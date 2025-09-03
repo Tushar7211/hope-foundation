@@ -121,3 +121,104 @@ body {
         .carousel-track:hover {
             animation-play-state: paused;
         }
+        /* Add this code at the end of your existing CSS file */
+
+/* Mobile responsiveness for title and logo */
+@media (max-width: 768px) {
+    .title {
+        font-size: 2.5rem; /* Smaller font size for mobile */
+        flex-direction: column; /* Stack logo above title on mobile */
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+    
+    .title::before {
+        width: 60px; /* Smaller logo for mobile */
+        height: 60px;
+        margin-right: 0; /* Remove right margin when stacked */
+        margin-bottom: 0.5rem; /* Add bottom margin when stacked */
+    }
+    
+    .tagline {
+        font-size: 1.2rem; /* Smaller tagline for mobile */
+        text-align: center;
+        padding: 0 1rem; /* Add some padding */
+    }
+    
+    .page1 {
+        padding: 1rem; /* Add padding to prevent edge cutoff */
+    }
+    
+    .donatebtn {
+        font-size: 1.2rem; /* Smaller button text */
+        padding: 0.8rem 1.5rem; /* Smaller button padding */
+    }
+    
+    /* Mobile responsiveness for three boxes layout */
+    div[style*="display: flex"][style*="justify-content: space-between"] {
+        flex-direction: column !important; /* Stack boxes vertically on mobile */
+        gap: 15px !important; /* Reduce gap for mobile */
+        padding: 0 1rem; /* Add horizontal padding */
+    }
+    
+    /* Target the individual sections (boxes) */
+    div[style*="display: flex"][style*="justify-content: space-between"] > section {
+        margin-bottom: 1rem; /* Add space between stacked items */
+    }
+    
+    /* Adjust text sizes for mobile */
+    div[style*="display: flex"][style*="justify-content: space-between"] h2 {
+        font-size: 1.5rem !important; /* Smaller heading on mobile */
+    }
+    
+    div[style*="display: flex"][style*="justify-content: space-between"] p {
+        font-size: 16px !important; /* Smaller paragraph text on mobile */
+    }
+    
+    /* Make carousel more mobile friendly */
+    .carousel-item img {
+        width: 300px !important;
+        height: 300px !important;
+    }
+}
+
+/* For very small screens (phones in portrait) */
+@media (max-width: 480px) {
+    .title {
+        font-size: 2rem; /* Even smaller for very small screens */
+        padding: 0 0.5rem;
+    }
+    
+    .title::before {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .tagline {
+        font-size: 1rem;
+        padding: 0 0.5rem;
+    }
+    
+    .donatebtn {
+        font-size: 1rem;
+        padding: 0.6rem 1.2rem;
+    }
+    
+    div[style*="display: flex"][style*="justify-content: space-between"] {
+        gap: 10px !important;
+        padding: 0 0.5rem;
+    }
+    
+    div[style*="display: flex"][style*="justify-content: space-between"] h2 {
+        font-size: 1.3rem !important;
+    }
+    
+    div[style*="display: flex"][style*="justify-content: space-between"] p {
+        font-size: 14px !important;
+    }
+    
+    .carousel-item img {
+        width: 250px !important;
+        height: 250px !important;
+    }
+}
