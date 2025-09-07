@@ -143,22 +143,10 @@ body {
 /* Mobile responsiveness for title and logo */
 @media (max-width: 768px) {
     .orderbtn {
-    background-color: #4CAF50;
-    color: white;
-    padding: 12px 24px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 16px;
-    margin-top: 10px;   /* adds gap above */
-    display: inline-block;
-    transition: background 0.3s ease;
+   font-size: 1.2rem; /* Smaller button text */
+        padding: 0.8rem 1.5rem;
 }
 
-
-.orderbtn:hover {
-    background-color: #45a049;
-}
     .title {
         font-size: 3.5rem; /* Smaller font size for mobile */
         flex-direction: column; /* Stack logo above title on mobile */
@@ -219,22 +207,12 @@ body {
 /* For very small screens (phones in portrait) */
 @media (max-width: 480px) {
    .orderbtn {
-    background-color: #4CAF50;
-    color: white;
-    padding: 12px 24px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 16px;
-    margin-top: 10px;   /* adds gap above */
-    display: inline-block;
-    transition: background 0.3s ease;
+    font-size: 1.2rem; /* Smaller button text */
+        padding: 0.8rem 1.5rem;
 }
 
 
-.orderbtn:hover {
-    background-color: #45a049;
-}
+
     .title {
         font-size: 2rem; /* Even smaller for very small screens */
         padding: 0 0.5rem;
