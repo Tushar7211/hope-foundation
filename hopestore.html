@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hope Foundation - Product Store</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8fafc;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding: 50px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 25px;
+            color: white;
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
+        }
+
+        .header h1 {
+            font-size: 3.5em;
+            margin-bottom: 15px;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .header p {
+            font-size: 1.3em;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 25px;
+        }
+
+        .tagline {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 15px;
+            font-style: italic;
+            font-size: 1.1em;
+            backdrop-filter: blur(10px);
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 50px;
+            margin-top: 40px;
+        }
+
+        .products-section h2 {
+            font-size: 2.5em;
+            color: #2d3748;
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        .products-section h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        .products-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 3px solid transparent;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+            border-color: #667eea;
+        }
+
+        .product-card.selected {
+            border-color: #667eea;
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.3);
+        }
+
+        .product-image {
+           height: 220px;
+    background-image: url('https://1.bp.blogspot.com/-5Yp0HgBv7ps/X7T2MjTgECI/AAAAAAAANQI/4qonM2FS23Eq-9oVku-J08TBlQUs3FcNgCLcBGAsYHQ/s16000/Thekua%2Brecipe.JPG');
+    background-size: cover;      /* Makes the image cover the box */
+    background-position: center; /* Keeps the image centered */
+    background-repeat: no-repeat;/* Prevents repetition */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5em;
+    color: white;
+    position: relative;
+    overflow: hidden;
+        }
+        .product-image1 {
+          height: 220px;
+    background-image: url('https://m.media-amazon.com/images/I/61GN904H4SL.jpg');
+    background-size: cover;      /* Makes the image cover the box */
+    background-position: center; /* Keeps the image centered */
+    background-repeat: no-repeat;/* Prevents repetition */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5em;
+    color: white;
+    position: relative;
+    overflow: hidden;
+        }
+        
+           .product-image2 {
+    height: 220px;
+    background-image: url('https://lmbsweets.com/wp-content/uploads/2020/07/34-1.jpg');
+    background-size: cover;      /* Makes the image cover the box */
+    background-position: center; /* Keeps the image centered */
+    background-repeat: no-repeat;/* Prevents repetition */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5em;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+        
+
+        .product-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g fill="%23ffffff" fill-opacity="0.1"><circle cx="30" cy="30" r="4"/></g></svg>') repeat;
+        }
+
+        .product-info {
+            padding: 25px;
+        }
+
+        .product-title {
+            font-size: 1.6em;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 12px;
+        }
+
+        .product-price {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .product-description {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        .product-impact {
+            background: linear-gradient(135deg, #e6fffa, #b2f5ea);
+            border: 2px solid #38b2ac;
+            border-radius: 12px;
+            padding: 15px;
+            color: #285e61;
+            font-size: 0.95em;
+        }
+
+        .product-impact strong {
+            color: #2c7a7b;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .order-section {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            height: fit-content;
+            sticky: top-20px;
+        }
+
+        .order-section h2 {
+            font-size: 2.2em;
+            color: #2d3748;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .selected-product {
+            background: #f7fafc;
+            border: 2px solid #667eea;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .selected-product-name {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .selected-product-price {
+            font-size: 1.6em;
+            font-weight: bold;
+            color: #2d3748;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #4a5568;
+            font-size: 1.1em;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .quantity-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5em;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .quantity-btn:hover {
+            background: #5a67d8;
+            transform: scale(1.1);
+        }
+
+        .quantity-display {
+            font-size: 1.8em;
+            font-weight: bold;
+            min-width: 50px;
+            text-align: center;
+            background: #f7fafc;
+            padding: 10px 20px;
+            border-radius: 10px;
+            border: 2px solid #e2e8f0;
+        }
+
+        .total-amount {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 25px 0;
+        }
+
+        .total-amount h3 {
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .total-price {
+            font-size: 2.2em;
+            font-weight: bold;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #38a169, #48bb78);
+            color: white;
+            border: none;
+            padding: 18px 30px;
+            border-radius: 12px;
+            font-size: 1.3em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(56, 161, 105, 0.4);
+        }
+
+        .submit-btn:disabled {
+            background: #a0aec0;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .submit-btn:hover::before {
+            left: 100%;
+        }
+
+        .success-message {
+            background: #c6f6d5;
+            border: 2px solid #38a169;
+            color: #22543d;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 20px;
+            display: none;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 80px;
+            padding: 50px 30px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer h3 {
+            color: #2d3748;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        .footer p {
+            color: #666;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        @media (max-width: 1024px) {
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .order-section {
+                position: static;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5em;
+            }
+            
+            .products-gallery {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 15px;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+
+        .no-product-selected {
+            text-align: center;
+            color: #a0aec0;
+            padding: 40px 20px;
+            border: 2px dashed #e2e8f0;
+            border-radius: 15px;
+            margin-bottom: 25px;
+        }
+
+        .product-selector {
+            margin-bottom: 25px;
+        }
+
+        .product-selector select {
+            background: white;
+            color: #2d3748;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌟 Hope Foundation 🌟</h1>
+            <p>Empowering communities through compassionate action and sustainable support</p>
+            <div class="tagline">
+                "Every purchase creates ripples of hope, transforming lives with each step"
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="products-section">
+                <h2>Our  Products</h2>
+                <div class="products-gallery">
+                    <div class="product-card" data-product="Gur Thekua" data-price="250">
+                        <div class="product-image"></div>
+                        <div class="product-info">
+                            <div class="product-title">Gur Thekua</div>
+                            <div class="product-price">₹250</div>
+                            <div class="product-description">
+                                Homemade Gur Thekua – Authentic Bihari sweet made with pure jaggery, wheat flour & ghee, freshly packed with 10 pieces per box.
+                            </div>
+                            <!--<div class="product-impact">
+                                <strong>Community Impact:</strong>
+                                Supports a family of 4 for one complete week with nutritious meals and essential items. Distributed directly to verified families in need.
+                            </div>-->
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-product="Sugar Thekua" data-price="250">
+                        <div class="product-image1"></div>
+                        <div class="product-info">
+                            <div class="product-title">Sugar Thekua</div>
+                            <div class="product-price">₹250</div>
+                            <div class="product-description">
+                                Homemade Sugar Thekua – Authentic Bihari sweet made with pure Sugar, wheat flour & ghee, freshly packed with 10 pieces per box.
+                            </div>
+                            <!--<div class="product-impact">
+                                <strong>Future Building:</strong>
+                                Enables one child's complete education for an entire semester, including textbooks, notebooks, and essential learning tools.
+                            </div>-->
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-product="Gond laddu" data-price="250">
+                        <div class="product-image2"></div>
+                        <div class="product-info">
+                            <div class="product-title">Gond laddu</div>
+                            <div class="product-price">₹250</div>
+                            <div class="product-description">
+                                Homemade Gond Laddu – Traditional sweet made with gond (edible gum), wheat flour, and dry fruits, freshly packed with 10 pieces per box.
+                            </div>
+                            <!--<div class="product-impact">
+                                <strong>Health Security:</strong>
+                                Provides basic healthcare support for 10 individuals, including preventive care and emergency medical supplies for rural communities.
+                            </div>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="order-section">
+                <h2>Place Your Order</h2>
+                
+                <div id="selected-product-display" class="no-product-selected">
+                    <p>👆 Select a product above to continue</p>
+                </div>
+
+                <form id="orderForm" action="https://formspree.io/f/xyzdljwg" method="POST">
+                    <div class="product-selector">
+                        <label for="product-select">Or choose from dropdown:</label>
+                        <select name="selected_product" id="product-select">
+                            <option value="">Select a product...</option>
+                            <option value="Gur Thekua" data-price="250">Gur Thekua - ₹250</option>
+                            <option value="Sugar Thekua" data-price="250">Sugar Thekua - ₹250</option>
+                            <option value="Gond laddu" data-price="250">Gond Laddu - ₹250</option>
+                            
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="customer_name">Full Name *</label>
+                        <input type="text" id="customer_name" name="customer_name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="customer_email">Email Address *</label>
+                        <input type="email" id="customer_email" name="customer_email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="customer_phone">Phone Number *</label>
+                        <input type="tel" id="customer_phone" name="customer_phone" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="delivery_address">Delivery Address *</label>
+                        <textarea id="delivery_address" name="delivery_address" rows="4" required placeholder="Enter complete address with pincode"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Quantity</label>
+                        <div class="quantity-controls">
+                            <button type="button" class="quantity-btn" onclick="changeQuantity(-1)">−</button>
+                            <div class="quantity-display" id="quantity-display">1</div>
+                            <button type="button" class="quantity-btn" onclick="changeQuantity(1)">+</button>
+                            <input type="hidden" name="quantity" id="quantity-input" value="1">
+                        </div>
+                    </div>
+
+                    <div class="total-amount" id="total-amount" style="display: none;">
+                        <h3>Total Amount</h3>
+                        <div class="total-price" id="total-price">₹0</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="special_instructions">Special Instructions (Optional)</label>
+                        <textarea id="special_instructions" name="special_instructions" rows="3" placeholder="Any special delivery instructions or message..."></textarea>
+                    </div>
+
+                    <!-- Hidden fields for Formspree -->
+                    <input type="hidden" name="product_price" id="product-price-hidden">
+                    <input type="hidden" name="total_amount" id="total-amount-hidden">
+                    <input type="hidden" name="_subject" value="New Order - Hope Foundation">
+
+                    <button type="submit" class="submit-btn" id="submit-btn" disabled>
+                        Select Product to Continue
+                    </button>
+
+                    <div class="success-message" id="success-message">
+                        <h3>🎉 Order Submitted Successfully!</h3>
+                        <p>Thank you for your support! We'll contact you within 24 hours with payment details and delivery information.</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="footer">
+            <h3>Thank You for Making a Difference! 🙏</h3>
+            <p>Your support directly transforms lives and builds stronger communities.</p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span>📧</span>
+                    <span>orders@hopefoundation.org</span>
+                </div>
+                <div class="contact-item">
+                    <span>📱</span>
+                    <span>+91-7859010760</span>
+                </div>
+                
+            </div>
+            <p style="margin-top: 30px; font-style: italic;">"Hope is the thing with feathers that perches in the soul and sings the tune without the words and never stops at all."</p>
+        </div>
+    </div>
+
+    <script>
+        let selectedProduct = null;
+        let currentQuantity = 1;
+
+        // Product selection functionality
+        document.querySelectorAll('.product-card').forEach(card => {
+            card.addEventListener('click', function() {
+                selectProduct(this);
+            });
+        });
+
+        // Dropdown selection
+        document.getElementById('product-select').addEventListener('change', function() {
+            if (this.value) {
+                const card = document.querySelector(`[data-product="${this.value}"]`);
+                selectProduct(card);
+            } else {
+                clearSelection();
+            }
+        });
+
+        function selectProduct(card) {
+            // Remove previous selection
+            document.querySelectorAll('.product-card').forEach(c => c.classList.remove('selected'));
+            
+            // Add selection to current card
+            card.classList.add('selected');
+            
+            // Get product data
+            selectedProduct = {
+                id: card.dataset.product,
+                name: card.querySelector('.product-title').textContent,
+                price: parseInt(card.dataset.price)
+            };
+            
+            // Update dropdown
+            document.getElementById('product-select').value = selectedProduct.id;
+            
+            // Update display
+            updateSelectedProductDisplay();
+            updateTotalAmount();
+            
+            // Enable form
+            document.getElementById('submit-btn').disabled = false;
+            document.getElementById('submit-btn').textContent = `Order ${selectedProduct.name}`;
+        }
+
+        function clearSelection() {
+            document.querySelectorAll('.product-card').forEach(c => c.classList.remove('selected'));
+            selectedProduct = null;
+            document.getElementById('selected-product-display').innerHTML = '<p>👆 Select a product above to continue</p>';
+            document.getElementById('selected-product-display').className = 'no-product-selected';
+            document.getElementById('total-amount').style.display = 'none';
+            document.getElementById('submit-btn').disabled = true;
+            document.getElementById('submit-btn').textContent = 'Select Product to Continue';
+        }
+
+        function updateSelectedProductDisplay() {
+            const display = document.getElementById('selected-product-display');
+            if (selectedProduct) {
+                display.className = 'selected-product';
+                display.innerHTML = `
+                    <div class="selected-product-name">${selectedProduct.name}</div>
+                    <div class="selected-product-price">₹${selectedProduct.price.toLocaleString()}</div>
+                `;
+            }
+        }
+
+        function changeQuantity(change) {
+            if (!selectedProduct) return;
+            
+            currentQuantity += change;
+            if (currentQuantity < 1) currentQuantity = 1;
+            if (currentQuantity > 10) currentQuantity = 10;
+            
+            document.getElementById('quantity-display').textContent = currentQuantity;
+            document.getElementById('quantity-input').value = currentQuantity;
+            
+            updateTotalAmount();
+        }
+
+        function updateTotalAmount() {
+            if (!selectedProduct) return;
+            
+            const total = selectedProduct.price * currentQuantity;
+            document.getElementById('total-price').textContent = `₹${total.toLocaleString()}`;
+            document.getElementById('total-amount').style.display = 'block';
+            
+            // Update hidden fields
+            document.getElementById('product-price-hidden').value = selectedProduct.price;
+            document.getElementById('total-amount-hidden').value = total;
+        }
+
+        // Form submission
+        document.getElementById('orderForm').addEventListener('submit', function(e) {
+            if (!selectedProduct) {
+                e.preventDefault();
+                alert('Please select a product first');
+                return;
+            }
+            
+            // Show loading state
+            const submitBtn = document.getElementById('submit-btn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submitting Order...';
+            
+            // The form will submit to Formspree automatically
+            // Show success message after a delay (simulating submission)
+            setTimeout(() => {
+                document.getElementById('success-message').style.display = 'block';
+                submitBtn.textContent = 'Order Submitted!';
+                
+                // Reset form after success
+                setTimeout(() => {
+                    this.reset();
+                    clearSelection();
+                    currentQuantity = 1;
+                    document.getElementById('quantity-display').textContent = '1';
+                    document.getElementById('quantity-input').value = '1';
+                    document.getElementById('success-message').style.display = 'none';
+                }, 3000);
+            }, 1000);
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            clearSelection();
+        });
+    </script>
+</body>
+</html>
