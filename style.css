@@ -56,6 +56,23 @@ body {
 .donatebtn:hover {
     background-color: #bfa00e; /* Darker shade on hover */
 }
+.orderbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;   /* adds gap above */
+    display: inline-block;
+    transition: background 0.3s ease;
+}
+
+
+.orderbtn:hover {
+    background-color: #45a049;
+}
 .page1{
     background-image: url('https://www.dishafoundation.ngo/img/slider-1.jpeg');
     background-size: cover;
@@ -380,23 +397,6 @@ footer {
     padding-top: 20px;
     text-align: center;
     color: #bdc3c7;
-}
-.orderbtn {
-    background-color: #4CAF50;
-    color: white;
-    padding: 12px 24px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 16px;
-    margin-top: 10px;   /* adds gap above */
-    display: inline-block;
-    transition: background 0.3s ease;
-}
-
-
-.orderbtn:hover {
-    background-color: #45a049;
 }
 
 .newsletter {
